@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #one p{
+            color: red;
+        }
+        #one>p{
+            color: skyblue;
+        }
+        .cls~div{
+            color:green;
+        }
+        .cls+div{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="one">
+        <div>
+            <p>This is a simple tag</p>
+        </div>
+        <p class="cls">Hello World</p>
+    </div>
+    <div class="cls">This is a simple div</div>
+    <div>
+        <div class="cls">This is a div in a tag</div>
+        <div class="cls">This is a div in a tag</div>
+    </div>
+    <div class="cls">This is a div in a tag</div>
+</body>
+</html>
