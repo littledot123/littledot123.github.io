@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p[class]{
+          color: white;
+        }
+        p[class="null undefined green"]{
+          color:green;
+        }
+        p[class~="blue"]{
+          color: blue;
+        }
+        p[class^="red"]{
+          color: red;
+        }
+        p[class$="orange"]{
+          color: orange;
+        }
+        p[class*="pink"]{
+          color: pink;
+        }
+        p[id|="pp"]{
+          color: purple;
+        }
+
+    </style>
+</head>
+<body>
+    <p class="null undefined green">null undefined green</p>
+    <p class="blue null">blue null</p>
+    <p class="rednull">red null</p>
+    <p class="nullorange">nullorange</p>
+    <p class="nullpinkundefined"> nullpinkundefined</p>
+    <p id="pp-color">no-color</p>
+    <p id="ppColor">noColor</p>
+</body>
+</html>
