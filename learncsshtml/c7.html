@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #pos::before{
+            content: "Hello";
+            font-size:15px;
+            color: pink;
+        }
+        #pos::after{
+            content: "World";
+            font-size: 15px;
+            color: pink;
+        }
+        #text::first-letter{
+            text-transform: uppercase;
+            color: gold;
+        }
+        #text::selection{
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="pos">before this ,after this</div>
+    <div id="text">you can drag  these letters in this line</div>
+</body>
+</html>
