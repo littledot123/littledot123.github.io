@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div p:empty{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        #nav p:first-child {
+            color:green;
+        }
+        #nav div:first-of-type{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+  <div id="nav">
+      <p>Hello World</p>
+      <div>This is future!</div>
+  </div>
+  <div>
+     <p></p>
+  </div>
+
+</body>
+</html>
