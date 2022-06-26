@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #gate{
+            cursor: pointer;
+            margin-bottom: 100px;
+            width: 83px;
+            height: 46px;
+        }
+    </style>
+</head>
+<body>
+<!--<img src="https://en.js.cx/clipart/soccer-gate.svg" alt="null" id="gate" class="droppable">-->
+    <img src="https://js.cx/clipart/ball.svg" alt="null" id="ball">
+
+
+    <script>
+        let ball= document.getElementById('ball');
+        let currentDroppable=null;
+
+        ball.onmousedown=function(event){
+            let shiftX = event.clientX-ball.getBoundingClientRect().left;
+            let shiftY = event.clientY-ball.getBoundingClientRect().top;
+            ball.style.position='absolute';
+            ball.style.zIndex='1000';
+            document.body.append(ball);
+            moveAt(event.pageX,event.pageY);
+            function moveAt(pageX,pageY){
+                ball.style.left= pageX-shiftX+'px';
+                ball.style.top = pageY-shiftY+'px';
+            }
+            function moveBall(event){
+                moveAt(event.pageX,event.pageY);
+                ball.hidden=true;
+                let elemBlow = document.elementFromPoint(event.clientX,event.clientY);
+                ball.hidden=false;
+                if(!elemBlow) return;
+                let droppableBelow = elemBlow.closest('.droppable');
+                if(currentDroppable!==droppableBelow){
+                    if(currentDroppable){
+                        document.body.style.backgroundColor='';
+                    }
+                    currentDroppable= droppableBelow;
+                    if(currentDroppable){
+                        document.body.style.backgroundColor='pink';
+                    }
+                }
+
+            }
+            document.addEventListener('mousemove',moveBall);
+            ball.onmouseup=function(event){
+                document.removeEventListener('mousemove',moveBall);
+                ball.onmouseout=null;
+            }
+        };
+        ball.ondragstart=function(event){
+            return false;
+        }
+
+    </script>
+</body>
+</html>

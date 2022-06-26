@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #menu{
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="menu">
+    <button data-action="hello">one</button>
+    <button data-action="bye">two</button>
+    <button data-action="none">three</button>
+</div>
+
+
+    <script>
+        let menu = document.querySelector('#menu');
+        class OBJ{
+            handleEvent(event){
+                let method = event.target.dataset.action;
+                if(method){
+                    this[method]();
+                }
+            }
+            hello(){
+                alert('Hello,Jack!');
+            }
+            bye(){
+                alert('bye,Merry!');
+            }
+            none(){
+                alert('Who are you?');
+            }
+        }
+        let obj = new OBJ();
+        menu.addEventListener('click',obj);
+
+    </script>
+</body>
+</html>

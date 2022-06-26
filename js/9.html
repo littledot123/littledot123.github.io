@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+
+    #parent{
+        width: 200px;
+        height: 200px;
+        padding-top:1px;
+        padding-bottom: 1px;
+        margin: 100px auto;
+        background-color: pink;
+
+    }
+    #child{
+        width: 100px;
+        height: 100px;
+        background-color: purple;
+        margin: 49px auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="parent" onmouseover="test(event)" onmouseout="test(event)">
+    <div id="child"></div>
+  </div>
+  <script>
+      function test(event){
+          console.log('--------'+event.type+'---------');
+          console.log('relatedTarget:'+event.relatedTarget?.id);
+          console.log('target:'+event.target.id);
+          console.log('-----------------------');
+          console.log('');
+      }
+  </script>
+</body>
+</html>
+

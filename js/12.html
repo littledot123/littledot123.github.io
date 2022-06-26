@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+      body{
+          background-color: black;
+      }
+      #slider{
+        width: 310px;
+        height: 15px;
+        border-radius: 5px;
+        background:#e0e0e0;
+        background: linear-gradient(left top,#e0e0e0,#eeeeee);
+      }
+      #thumb{
+          position:relative;
+          left: 10px;
+          top:-5px;
+          width: 10px;
+          height: 25px;
+          border-radius: 3px;
+          background-color: blue;
+          cursor:pointer;
+      }
+  </style>
+</head>
+<body>
+    <div id="slider">
+      <div id="thumb"></div>
+    </div>
+    <script>
+        let thumb = document.querySelector('#thumb');
+        let slider = document.querySelector('#slider');
+        thumb.addEventListener('mousedown',function(event){
+            event.preventDefault();
+            let shiftX = event.clientX-thumb.getBoundingClientRect().left;
+            function onMouseMove(event){
+                let newLeft = event.clientX-shiftX-slider.getBoundingClientRect().left;
+                if(newLeft<0){
+                    newLeft=0;
+                }
+                let rightEdge=slider.offsetWidth-thumb.offsetWidth;
+
+                if(newLeft>rightEdge){
+                    newLeft= rightEdge;
+                }
+                thumb.style.left = newLeft+'px';
+            }
+            document.addEventListener('mousemove',onMouseMove);
+            document.onmouseup = function(event){
+                document.removeEventListener('mousemove',onMouseMove);
+                document.onmouseup=null;
+            };
+
+        });
+        thumb.ondragstart = function(){return false;};
+    </script>
+</body>
+</html>

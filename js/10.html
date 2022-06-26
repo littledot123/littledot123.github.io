@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+      *{
+          padding:0;
+          margin:0;
+      }
+      table{
+          border: 1px solid #444;
+          border-collapse: collapse;
+      }
+      th,td{
+          width: 100px;
+          height: 100px;
+          border: 1px solid #444;
+          text-align: center;
+          line-height: 100px;
+      }
+      #inner{
+          width: 100px;
+          height: 100px;
+          border-color:transparent;
+      }
+      #inner td,th{
+          width: 33.33333333333333333333333333333333%;
+          height: 33.3333%;
+          line-height: 33.3px;
+      }
+  </style>
+</head>
+<body>
+    <table id="outer">
+      <tr>
+        <th>字</th>
+        <th>母</th>
+        <th>表</th>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>B</td>
+        <td>C</td>
+      </tr>
+      <tr>
+        <td>D</td>
+        <td>E</td>
+        <td>F</td>
+      </tr>
+      <tr>
+        <td>G</td>
+        <td>H</td>
+        <td>
+            <table id="inner">
+                <tr>
+                    <th>A</th>
+                    <th>A</th>
+                    <th>A</th>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>B</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td id="inner_C">C</td>
+                    <td>C</td>
+                </tr>
+            </table>
+        </td>
+      </tr>
+    </table>
+    <script>
+        let table = document.querySelector('#outer');
+        let inner = document.getElementById('inner');
+        let currentTD=null;
+        table.onmouseover=function(event){
+            if(currentTD) return;
+            let target=event.target.closest('td');
+            if(!target) return;
+            if(inner.contains(target)){
+                target = target.parentNode.closest('td');
+            }
+            currentTD=target;
+            currentTD.style.backgroundColor='pink';
+
+            console.log('OVER--target'+event.target.tagName+'-'+(inner.contains(event.target)?'in':'out')+"----rt--"+event.relatedTarget.tagName+'-'+(inner.contains(event.target)?'in':'out'));
+        }
+        table.onmouseout=function(event){
+            if(!currentTD) return;
+            let target = event.relatedTarget.closest('td');
+            while(target){
+                if(target===currentTD) return;
+                target = target.parentNode;
+            }
+            currentTD.style.backgroundColor='';
+            currentTD=null;
+            console.log('OUT--target'+event.target.tagName+"----rt--"+event.relatedTarget.tagName);
+        }
+    </script>
+</body>
+</html>

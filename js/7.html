@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <input type="button" value="1" data-counter>
+        <input type="button" value="1" data-counter>
+      <button  data-counter>1</button>
+    </div>
+    <script>
+      function handler(event){
+          let counter = event.target.dataset.counter;
+          if(counter!= undefined){
+              event.target.value++;
+          }
+      }
+      let div = document.querySelector('div');
+      div.addEventListener('click',handler);
+    </script>
+</body>
+</html>
