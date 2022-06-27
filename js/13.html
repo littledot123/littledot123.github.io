@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        .slider{
+            width: 310px;
+            height: 15px;
+            border-radius: 5px;
+            background: #e0e0e0;
+            background:linear-gradient(left top,#e0e0e0,#eeeeee);
+            margin-bottom: 10px;
+
+        }
+        .thumb{
+            position:relative;
+            left: 10px;
+            top: -5px;
+            width: 10px;
+            height: 25px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #blueT{
+            background-color: blue;
+        }
+        #redT{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div id="blueT" class="thumb"></div>
+    </div>
+    <div class="slider">
+        <div id="redT" class="thumb"></div>
+    </div>
+    <script>
+        let blueT = document.getElementById('blueT');
+        let redT = document.getElementById('redT');
+        let slider = document.querySelector('.slider');
+        let count=0;
+        function onMouseMove(event,thumb){
+            let newLeft = event.clientX-slider.getBoundingClientRect().left;
+            if(newLeft<0){
+                newLeft=0;
+            }
+            let rightEdge=slider.offsetWidth-thumb.offsetWidth;
+
+            if(newLeft>rightEdge){
+                newLeft= rightEdge;
+            }
+            thumb.style.left = newLeft+'px';
+        }
+        document.onpointerdown= function(event){
+            event.preventDefault();
+            if(count>=2){
+                return;
+            }
+            count++;
+            document.onpointermove = function(event){
+                if(event.isPrimary){
+                    onMouseMove(event,blueT);
+                }else{
+                    onMouseMove(event,redT);
+                }
+            }
+            document.onpointerup = function(event){
+                count--;
+                if(count===0){
+                    document.onpointermove = null;
+                    document.onpointerup =null;
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>
